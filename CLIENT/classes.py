@@ -22,7 +22,9 @@ class tunnel:
         except requests.exceptions.ConnectionError:
             return False
     def get_messages(self):
-        return eval(requests.get(f"http://localhost:{port}/messages").text,data={"user":self.user})
+        text = requests.get(f"http://localhost:{port}/messages",data={"user":self.user}).text
+        print(text)
+        return eval(text)
     def send_message(self,message):
         requests.post(f"http://localhost:{port}/send",data={"message":message,"user":self.user})
     def register_user(self):

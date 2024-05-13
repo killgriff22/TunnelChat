@@ -17,7 +17,7 @@ def messages():
 @app.route('/register', )
 def register():
     user = flask.request.form['user']
-    return f"Registered as {user} <meta http-equiv='refresh' content='2;url=/messages'>"
+    return f"Registered as {user} <meta http-equiv='refresh' content='2;url=/messages'>", 200
 
 @app.route('/logout', )
 def logout():
