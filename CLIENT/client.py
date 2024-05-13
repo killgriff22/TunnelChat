@@ -9,5 +9,5 @@ while not Tunnel.ping():
     pass
 Tunnel.register_user()
 print("connected to server")
-#for msg in Tunnel.get_messages():
-#    print(msg)
+for msg in Tunnel.get_messages():
+    print(msg)
