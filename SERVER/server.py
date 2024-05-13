@@ -10,11 +10,9 @@ def root():
     return " ",200
 
 @app.route('/messages', )
-def messages():
-    msgs = []
-    for msg in messages:
-        msgs.append(msg.visable_str())
-    return str(msgs), 200
+def get_messages():
+    msgs = [msg.visable_str() if ('user' in flask.request.data and flask.request.data['user'] in users) else msg.anon_str() for msg in messages ]
+    return str(msgs)
 
 @app.route('/register', )
 def register():
