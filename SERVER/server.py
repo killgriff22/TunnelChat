@@ -11,8 +11,10 @@ def root():
 
 @app.route('/messages', )
 def messages():
-    msgs = [msg.visable_str() for msg in messages ]
-    return str(msgs)
+    msgs = []
+    for msg in messages:
+        msgs.append(msg.visable_str())
+    return str(msgs), 200
 
 @app.route('/register', )
 def register():
