@@ -4,7 +4,6 @@ class tunnel:
     def __init__(self,Server,user=""):
         self.Server = Server
         self.user = user
-        self.register_user()
         self.tunnel = None
     def spawn(self):
         # Create a tunnel to the server

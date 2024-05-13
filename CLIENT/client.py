@@ -7,6 +7,7 @@ atexit.register(Exit)
 
 while not Tunnel.ping():
     pass
+Tunnel.register_user()
 print("connected to server")
 for msg in Tunnel.get_messages():
     print(msg)
