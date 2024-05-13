@@ -9,17 +9,17 @@ users = []
 def root():
     return " ",200
 
-@app.route('/messages', methods=['POST'])
+@app.route('/messages', )
 def messages():
     msgs = [msg.visable_str() if ('user' in flask.request.data and flask.request.data['user'] in users) else msg.anon_str() for msg in messages ]
     return str(msgs)
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', )
 def register():
     user = flask.request.form['user']
     return f"Registered as {user} <meta http-equiv='refresh' content='2;url=/messages'>"
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', )
 def logout():
     if not 'user' in flask.request.data:
         return " ", 405
@@ -28,7 +28,7 @@ def logout():
     users.remove(flask.request.data['user'])
     return " ", 200
 
-@app.route('/send', methods=['POST'])
+@app.route('/send', )
 def send():
     message = flask.request.data['message']
     sender = flask.request.data['user']
