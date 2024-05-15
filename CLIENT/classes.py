@@ -1,5 +1,8 @@
 from modules import *
 
+class dummyrequest:
+    status_code = 500
+
 class tunnel:
     def __init__(self,Server,user=""):
         self.Server = Server
@@ -33,8 +36,8 @@ class tunnel:
         self.post(f"http://localhost:{port}/logout",data={"user":self.user})
         self.kill()
 
-    def post(self,url,data):
+    def post(self,url,data={}):
         try:
             return requests.post(url,json=data)
         except requests.exceptions.ConnectionError:
-            return None
+            return dummyrequest
