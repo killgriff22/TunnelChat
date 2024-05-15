@@ -19,7 +19,7 @@ def root():
 @app.route('/messages', )
 def get_messages():
     msgs = []
-    if not 'user' in flask.request.data or not flask.request.data['user'] in users:
+    if not 'user' in flask.request.json or not flask.request.json['user'] in users:
         for msg in messages:
             msgs.append(msg.anon_str())
     else:
@@ -29,28 +29,28 @@ def get_messages():
 
 @app.route('/register', )
 def register():
-    user = flask.request.form['user']
+    user = flask.request.json['user']
     users.append(user)
     return " ", 200
 
 @app.route('/logout', )
 def logout():
-    if not 'user' in flask.request.data:
+    if not 'user' in flask.request.json:
         return " ", 405
-    if not flask.request.data['user'] in users:
+    if not flask.request.json['user'] in users:
         return " ", 405
-    users.remove(flask.request.data['user'])
+    users.remove(flask.request.json['user'])
     if len(users) == 0:
         shutdown_server()
     return " ", 200
 
 @app.route('/send', )
 def send():
-    message = flask.request.data['message']
-    sender = flask.request.data['user']
-    if not 'user' in flask.request.data:
+    message = flask.request.json['message']
+    sender = flask.request.json['user']
+    if not 'user' in flask.request.json:
         return " ", 405
-    if not flask.request.data['user'] in users:
+    if not flask.request.json['user'] in users:
         return " ", 405
     receiver = "Global"
     messages.append(Message(message,sender,receiver))
