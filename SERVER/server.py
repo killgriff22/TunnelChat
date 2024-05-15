@@ -1,9 +1,16 @@
 from classes import *
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
 app = flask.Flask(__name__)
 
 messages = [Message("Hello","Master","Global")]
 
 users = []
+
+exit_flag = False
 
 @app.route('/')
 def root():
@@ -33,6 +40,8 @@ def logout():
     if not flask.request.data['user'] in users:
         return " ", 405
     users.remove(flask.request.data['user'])
+    if len(users) == 0:
+        shutdown_server()
     return " ", 200
 
 @app.route('/send', )

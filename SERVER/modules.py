@@ -6,3 +6,4 @@ import flask
 from config import *
 import sys
 args = sys.argv
+from flask import request
