@@ -24,7 +24,7 @@ def get_messages():
             msgs.append(msg.anon_str())
     else:
         for msg in messages:
-            msgs.append(msg.visivle_str())
+            msgs.append(msg.visable_str())
     return str(msgs)
 
 @app.route('/register', methods=['GET', 'POST'])
