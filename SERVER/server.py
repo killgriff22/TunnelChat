@@ -12,11 +12,11 @@ users = []
 
 exit_flag = False
 
-@app.route('/',methods=['POST','GET'])
+@app.route('/',methods=['GET', 'POST'])
 def root():
     return " ",200
 
-@app.route('/messages', methods=['POST','GET'])
+@app.route('/messages', methods=['GET', 'POST'])
 def get_messages():
     msgs = []
     if not 'user' in flask.request.json or not flask.request.json['user'] in users:
@@ -27,13 +27,13 @@ def get_messages():
             msgs.append(msg.visivle_str())
     return str(msgs)
 
-@app.route('/register', methods=['POST','GET'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     user = flask.request.json['user']
     users.append(user)
     return " ", 200
 
-@app.route('/logout', methods=['POST','GET'])
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     if not 'user' in flask.request.json:
         return " ", 405
@@ -44,7 +44,7 @@ def logout():
         shutdown_server()
     return " ", 200
 
-@app.route('/send', methods=['POST','GET'])
+@app.route('/send', methods=['GET', 'POST'])
 def send():
     message = flask.request.json['message']
     sender = flask.request.json['user']
