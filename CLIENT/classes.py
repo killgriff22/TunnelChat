@@ -7,7 +7,7 @@ class tunnel:
         self.tunnel = None
     def spawn(self):
         # Create a tunnel to the server
-        self.tunnel = subprocess.Popen(['ssh', '-N' ,'-L',f'{port}:localhost:{port}', f'{self.user}@{self.Server}'])
+        self.tunnel = subprocess.Popen(['ssh', '-N' ,'-L',f'{port}:localhost:{port}', f'{self.user}@{self.Server}',f'python3 TunnelChat/SERVER/server.py {port}'])
     def kill(self):
         self.tunnel.kill()
     def ping(self):

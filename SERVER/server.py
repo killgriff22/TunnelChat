@@ -40,5 +40,8 @@ def send():
     receiver = "Global"
     messages.append(Message(message,sender,receiver))
     return " ", 200
-
-app.run("0.0.0.0",6060)
+if len(args) > 1:
+    port = args[1]
+else:
+    port = 6060
+app.run("0.0.0.0",port)
