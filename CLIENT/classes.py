@@ -34,4 +34,7 @@ class tunnel:
         self.kill()
 
     def post(self,url,data):
-        return requests.post(url,json=data)
+        try:
+            return requests.post(url,json=data)
+        except requests.exceptions.ConnectionError:
+            return None
